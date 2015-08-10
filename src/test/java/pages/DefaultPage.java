@@ -3,6 +3,8 @@ package pages;
 import core.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 /**
@@ -12,8 +14,9 @@ public class DefaultPage extends PageBase {
 
     String URL="http://streamtv.net.ua/base/";
 
-    public DefaultPage(WebDriver driver){
+    public DefaultPage(WebDriver driver, WebDriverWait webDriverWait){
         this.driver=driver;
+        this.webDriverWait=webDriverWait;
         if (!driver.getCurrentUrl().equals(URL)){
             open(URL);
         }
@@ -22,6 +25,7 @@ public class DefaultPage extends PageBase {
 
     public void createNewSportsMan(){
         driver.findElement(By.xpath("//button[@ng-click='newWrestler()']")).click();
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@ng-click='delete()']")));
     }
 
     public void searchSportsMan(String searchQuery){

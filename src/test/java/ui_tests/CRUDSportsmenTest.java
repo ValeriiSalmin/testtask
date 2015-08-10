@@ -19,11 +19,13 @@ public class CRUDSportsmenTest extends TestBase{
 //        expect().body("title", equalTo("Hello world!")).when().get("http://localhost:64217/wp-json.php/posts/1");
 //    }
 
+
+
     @Test
     public void createSportsMan(){
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver,webDriverWait);
         loginPage.login();
-        DefaultPage defaultPage = new DefaultPage(driver);
+        DefaultPage defaultPage = new DefaultPage(driver,webDriverWait);
         defaultPage.createNewSportsMan();
         CreateSportsManPage createSportsManPage = new CreateSportsManPage(driver);
         createSportsManPage.fillAllData();
